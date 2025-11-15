@@ -1,3 +1,5 @@
+import java.math.BigInteger;
+
 public class Camioneta extends Vehiculo {
 
     private String tipoCabina;
@@ -7,14 +9,22 @@ public class Camioneta extends Vehiculo {
 
     public Camioneta() {}
 
-    public Camioneta(String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+    public Camioneta(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                      boolean tuvoMantenimiento, String tipoCabina, double capacidadCarga, String tipoTraccion,
                      boolean tieneCajaCubierta) {
-        super(marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+        super(dniTitular, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
         this.tipoCabina = tipoCabina;
         this.capacidadCarga = capacidadCarga;
         this.tipoTraccion = tipoTraccion;
         this. tieneCajaCubierta = tieneCajaCubierta;
+    }
+    @Override
+    public String toString() {
+        return super.toString() + "\n" +
+                "tipoCabina=" + this.tipoCabina + "\n" +
+                "capacidadCarga=" + this.capacidadCarga + "\n" +
+                "tipoTraccion=" + this.tipoTraccion + "\n" +
+                "tieneCajaCubierta=" + this.tieneCajaCubierta;
     }
 
     @Override

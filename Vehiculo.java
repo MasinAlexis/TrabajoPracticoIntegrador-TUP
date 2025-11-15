@@ -1,5 +1,9 @@
+import java.math.BigInteger;
+
 public class Vehiculo {
 
+    private Long dniTitular;
+    private String tipo; // Auto - Motocicleta - Camioneta
     private String marca;
     private String modelo;
     private int anioFabricacion;
@@ -9,8 +13,10 @@ public class Vehiculo {
 
     public Vehiculo() {}
 
-    public Vehiculo(String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+    public Vehiculo(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                     boolean tuvoMantenimiento) {
+        this.dniTitular = dniTitular;
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.anioFabricacion = anioFabricacion;
@@ -19,13 +25,41 @@ public class Vehiculo {
         this.tuvoMantenimiento = tuvoMantenimiento;
     }
 
+    @Override
+    public String toString() {
+        return "dniTitular=" + dniTitular + "\n" +
+                "tipo=" + tipo + "\n" +
+                "marca=" + marca + "\n" +
+                "modelo=" + modelo + "\n" +
+                "anioFabricacion=" + anioFabricacion + "\n" +
+                "color=" + color + "\n" +
+                "esUsado=" + esUsado + "\n" +
+                "tuvoMantenimiento=" + tuvoMantenimiento;
+    }
+
     public void mostrarInfo() {
+        System.out.println("Dni Titular de Vehiculo: " + this.dniTitular);
+        System.out.println("Tipo Vehiculo: " + this.tipo);
         System.out.println("Marca: " + this.marca);
         System.out.println("Modelo: " + this.modelo);
         System.out.println("Año de fabricación: " + this.anioFabricacion);
         System.out.println("Color: " + this.color);
         System.out.println("Usado: " + (this.esUsado ? "Sí" : "No"));
         System.out.println("Tuvo mantenimiento: " + (this.tuvoMantenimiento ? "Sí" : "No"));
+    }
+
+    public Long getDniTitular() {
+        return dniTitular;
+    }
+    public void setDniTitular(Long dniTitular) {
+        this.dniTitular = dniTitular;
+    }
+
+    public String getTipo() {
+        return this.tipo;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getMarca() {
