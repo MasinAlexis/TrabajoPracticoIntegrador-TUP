@@ -1,3 +1,5 @@
+import java.math.BigInteger;
+
 public class Motocicleta extends Vehiculo {
 
     private String tipoMoto;   // deportiva, naked, scooter, touring, enduro
@@ -7,15 +9,23 @@ public class Motocicleta extends Vehiculo {
 
     public Motocicleta() {}
 
-    public Motocicleta(String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
-                boolean tuvoMantenimiento, String tipoMoto, Integer cilindrada, String tipoMotor, boolean tieneBaul) {
-        super(marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+    public Motocicleta(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+                       boolean tuvoMantenimiento, String tipoMoto, Integer cilindrada, String tipoMotor, boolean tieneBaul) {
+        super(dniTitular, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
         this.tipoMoto = tipoMoto;
         this.cilindrada = cilindrada;
         this.tipoMotor = tipoMotor;
         this.tieneBaul = tieneBaul;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "\n" +
+                "tipoMoto=" + this.tipoMoto+ "\n" +
+                "cilindrada=" + this.cilindrada+ "\n" +
+                "tipoMotor=" + this.tipoMotor+ "\n" +
+                "tieneBaul=" + this.tieneBaul;
+    }
     @Override
     public void mostrarInfo() {
         super.mostrarInfo();
