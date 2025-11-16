@@ -1,4 +1,3 @@
-import java.math.BigInteger;
 
 public class Auto extends Vehiculo {
 
@@ -7,7 +6,8 @@ public class Auto extends Vehiculo {
     private String tipoCombustible;
     private String transmision;
 
-    public Auto() {}
+    public Auto() {
+    }
 
     public Auto(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                 boolean tuvoMantenimiento, String carroceria, int cantidadPuertas, String tipoCombustible,
@@ -40,6 +40,7 @@ public class Auto extends Vehiculo {
     public String getCarroceria() {
         return this.carroceria;
     }
+
     public void setCarroceria(String carroceria) {
         this.carroceria = carroceria;
     }
@@ -47,6 +48,7 @@ public class Auto extends Vehiculo {
     public int getCantidadPuertas() {
         return this.cantidadPuertas;
     }
+
     public void setCantidadPuertas(int cantidadPuertas) {
         this.cantidadPuertas = cantidadPuertas;
     }
@@ -54,6 +56,7 @@ public class Auto extends Vehiculo {
     public String getTipoCombustible() {
         return this.tipoCombustible;
     }
+
     public void setTipoCombustible(String tipoCombustible) {
         this.tipoCombustible = tipoCombustible;
     }
@@ -61,6 +64,7 @@ public class Auto extends Vehiculo {
     public String getTransmision() {
         return this.transmision;
     }
+
     public void setTransmision(String transmision) {
         this.transmision = transmision;
     }

@@ -11,7 +11,8 @@ public class Vehiculo {
     private boolean esUsado;
     private boolean tuvoMantenimiento;
 
-    public Vehiculo() {}
+    public Vehiculo() {
+    }
 
     public Vehiculo(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                     boolean tuvoMantenimiento) {
@@ -65,6 +66,7 @@ public class Vehiculo {
     public String getMarca() {
         return this.marca;
     }
+
     public void setMarca(String marca) {
         this.marca = marca;
     }
@@ -72,6 +74,7 @@ public class Vehiculo {
     public String getModelo() {
         return this.modelo;
     }
+
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
@@ -79,6 +82,7 @@ public class Vehiculo {
     public int getAnioFabricacion() {
         return this.anioFabricacion;
     }
+
     public void setAnioFabricacion(int anioFabricacion) {
         this.anioFabricacion = anioFabricacion;
     }
@@ -86,6 +90,7 @@ public class Vehiculo {
     public String getColor() {
         return this.color;
     }
+
     public void setColor(String color) {
         this.color = color;
     }
@@ -93,6 +98,7 @@ public class Vehiculo {
     public boolean isEsUsado() {
         return this.esUsado;
     }
+
     public void setEsUsado(boolean esUsado) {
         this.esUsado = esUsado;
     }
@@ -100,6 +106,7 @@ public class Vehiculo {
     public boolean isTuvoMantenimiento() {
         return this.tuvoMantenimiento;
     }
+
     public void setTuvoMantenimiento(boolean tuvoMantenimiento) {
         this.tuvoMantenimiento = tuvoMantenimiento;
     }
