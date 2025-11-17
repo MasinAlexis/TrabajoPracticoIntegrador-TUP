@@ -1,6 +1,6 @@
-import java.math.BigInteger;
+import java.io.Serializable;
 
-public class Vehiculo {
+public class Vehiculo implements Serializable{
 
     private Long dniTitular;
     private String tipo; // Auto - Motocicleta - Camioneta
@@ -28,14 +28,14 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "dniTitular=" + dniTitular + "\n" +
-                "tipo=" + tipo + "\n" +
-                "marca=" + marca + "\n" +
-                "modelo=" + modelo + "\n" +
-                "anioFabricacion=" + anioFabricacion + "\n" +
-                "color=" + color + "\n" +
-                "esUsado=" + esUsado + "\n" +
-                "tuvoMantenimiento=" + tuvoMantenimiento;
+        return "dniTitular: " + dniTitular + "\n" +
+                "tipo: " + tipo + "\n" +
+                "marca: " + marca + "\n" +
+                "modelo: " + modelo + "\n" +
+                "anioFabricacion: " + anioFabricacion + "\n" +
+                "color: " + color + "\n" +
+                "esUsado: " + esUsado + "\n" +
+                "tuvoMantenimiento: " + tuvoMantenimiento;
     }
 
     public void mostrarInfo() {

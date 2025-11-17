@@ -17,5 +17,11 @@ public class GestionDeVehiculos {
         gestion.agregarVehiculo(camioneta);
 
         System.out.println("Listo! Revisa el archivo txt.");
+
+        gestion.guardarVehiculosFile();
+        gestion.obtenerVehiculosFile();
+
+        gestion.mostrarListadoVehiculos();
+        
     }
 }

@@ -7,4 +7,9 @@ public interface GestionVehiculos {
     Vehiculo actualizarVehiculo(Vehiculo vehiculoActualizado);
     List<Vehiculo> agregarVehiculoAMantenimiento();
     List<Vehiculo> agregarVehiculoALavadero();
+    //Gestion de vehiculos en el archivo
+    List<Vehiculo> obtenerVehiculosFile() throws IOException;
+    void guardarVehiculosFile() throws IOException;
+    //Mostrar listado de vehiculos desde el archivo
+    void mostrarListadoVehiculos();
 }
