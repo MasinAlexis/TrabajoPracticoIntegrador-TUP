@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Vehiculo implements Serializable{
 
@@ -10,6 +11,7 @@ public class Vehiculo implements Serializable{
     private String color;
     private boolean esUsado;
     private boolean tuvoMantenimiento;
+    private LocalDate fechaBaja = null;
 
     public Vehiculo() {
     }
@@ -47,6 +49,7 @@ public class Vehiculo implements Serializable{
         System.out.println("Color: " + this.color);
         System.out.println("Usado: " + (this.esUsado ? "Sí" : "No"));
         System.out.println("Tuvo mantenimiento: " + (this.tuvoMantenimiento ? "Sí" : "No"));
+        System.out.println("Fecha de Baja: " + (this.fechaBaja == null ? "Activo" : this.fechaBaja));
     }
 
     public Long getDniTitular() {
@@ -95,7 +98,7 @@ public class Vehiculo implements Serializable{
         this.color = color;
     }
 
-    public boolean isEsUsado() {
+    public boolean getEsUsado() {
         return this.esUsado;
     }
 
@@ -103,11 +106,19 @@ public class Vehiculo implements Serializable{
         this.esUsado = esUsado;
     }
 
-    public boolean isTuvoMantenimiento() {
+    public boolean getTuvoMantenimiento() {
         return this.tuvoMantenimiento;
     }
 
     public void setTuvoMantenimiento(boolean tuvoMantenimiento) {
         this.tuvoMantenimiento = tuvoMantenimiento;
+    }
+
+    public LocalDate getFechaBaja() {
+        return fechaBaja;
+    }
+
+    public void setFechaBaja(LocalDate fechaBaja) {
+        this.fechaBaja = fechaBaja;
     }
 }

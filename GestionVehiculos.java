@@ -3,8 +3,9 @@ import java.util.List;
 
 public interface GestionVehiculos {
     void agregarVehiculo(Vehiculo vehiculo) throws IOException;
-    void eliminarVehiculo(Vehiculo vehiculo);
-    Vehiculo actualizarVehiculo(Vehiculo vehiculoActualizado);
+    void eliminarVehiculoByDni(Long dniTitular) throws IOException;
+    void vehiculosDadosDeBaja() throws IOException;
+    Vehiculo actualizarVehiculo(Vehiculo vehiculoActualizado) throws IOException;
     List<Vehiculo> agregarVehiculoAMantenimiento();
     List<Vehiculo> agregarVehiculoALavadero();
     //Gestion de vehiculos en el archivo
