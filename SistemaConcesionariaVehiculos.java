@@ -1,11 +1,5 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,13 +13,59 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
     }
 
     @Override
-    public void eliminarVehiculo(Vehiculo vehiculo) {
+    public void eliminarVehiculoByDni(Long dniTitular) throws IOException {
+        //El metodo ya carga nuestro atributo vehiculos con la lista actual
+        List<Vehiculo> listadoVehiculos = obtenerVehiculosFile();
 
+        Vehiculo vehiculo = listadoVehiculos.stream()
+                .filter(v -> v.getDniTitular().equals(dniTitular))
+                .findFirst()
+                .orElse(null);
+
+        if (vehiculo == null) {
+            System.out.println("Agregar excepcion para: No existe un vehiculo con ese titular.");
+        }
+        //Al modificar el objeto, lo estamos modificando dentro del mismo listado
+        vehiculo.setFechaBaja(LocalDate.now());
+
+        //Asignamos a nuestra lista la actualizada
+        this.vehiculos = listadoVehiculos;
+        guardarVehiculosFile();
+        System.out.println("Vehículo dado de baja correctamente.");
     }
 
     @Override
-    public Vehiculo actualizarVehiculo(Vehiculo vehiculoActualizado) {
-        return null;
+    public Vehiculo actualizarVehiculo(Vehiculo vehiculoActualizado) throws IOException {
+        //El metodo ya carga nuestro atributo vehiculos con la lista actual
+        List<Vehiculo> listadoVehiculos = obtenerVehiculosFile();
+
+        Vehiculo vehiculo = listadoVehiculos.stream()
+                .filter(v -> v.getDniTitular().equals(vehiculoActualizado.getDniTitular()))
+                .findFirst()
+                .orElse(null);
+
+        if (vehiculo == null) {
+            System.out.println("Agregar excepcion para: No existe un vehiculo con ese titular.");
+        }
+
+        //Actualizamos nuestro vehiculo
+        vehiculo.setDniTitular(vehiculoActualizado.getDniTitular());
+        vehiculo.setTipo(vehiculoActualizado.getTipo());
+        vehiculo.setMarca(vehiculoActualizado.getMarca());
+        vehiculo.setModelo(vehiculoActualizado.getModelo());
+        vehiculo.setAnioFabricacion(vehiculoActualizado.getAnioFabricacion());
+        vehiculo.setColor(vehiculoActualizado.getColor());
+        vehiculo.setEsUsado(vehiculoActualizado.getEsUsado());
+        vehiculo.setTuvoMantenimiento(vehiculoActualizado.getTuvoMantenimiento());
+        vehiculo.setFechaBaja(null);
+
+        //Asignamos a nuestra lista la actualizada
+        this.vehiculos = listadoVehiculos;
+        guardarVehiculosFile();
+
+        System.out.println("Vehículo actualizado correctamente.");
+
+        return vehiculoActualizado;
     }
 
     @Override
@@ -39,84 +79,44 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
     }
 
     private void guardarVehiculo(Vehiculo vehiculo) throws IOException {
-        // // Vamos a indicar el nombre del archivo que vamos a crear posteriormente
-        // File file = new File("ListadoDeAutosEnMantenimiento.txt");
-        // // Creamos el archivo solamente si no existe
-        // if (!file.exists()) {
-        //     file.createNewFile();
-        // }
-
-        // // Se encarga de guardar nuestros vehiculos en el listado, mediante el metodo
-        // // ToString para poder
-        // // aprovechar la herencia
-        // try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-        //     bw.write(vehiculo.toString()); // Utiliza el toString del tipo de vehiculo indicado
-        //     bw.newLine();
-        //     bw.write("--------------------"); // Vamos a usar este separador para los vehiculos
-        //     bw.newLine();
-        // }
         this.vehiculos.add(vehiculo);
     }
 
     @Override
-    public void guardarVehiculosFile() throws IOException {
-        ObjectOutputStream out = null;
-        try {
-            File f = new File("vehiculos.dat");
-            f.createNewFile();
-
-            out = new ObjectOutputStream(new FileOutputStream(f));
-            for (Vehiculo vehiculo : this.vehiculos) {
-                out.writeObject(vehiculo);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (out != null) {
-                out.close();
-            }
-        }
-    }
-
-    @Override
     public List<Vehiculo> obtenerVehiculosFile() throws IOException {
-        //List<Vehiculo> vehiculos = new ArrayList<>();
-        File f = new File("vehiculos.dat");
+        File archivo = new File("vehiculos.dat");
+        vehiculos.clear();
 
-        // Si el archivo no existe o está vacío, retornar lista vacía
-        if (!f.exists() || f.length() == 0) {
+        if (!archivo.exists() || archivo.length() == 0) {
             return vehiculos;
         }
-
-        ObjectInputStream in = null;
-        try {
-            in = new ObjectInputStream(new FileInputStream(f));
-
-            // Leer objetos hasta que se lance EOFException
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
             while (true) {
                 try {
-                    Vehiculo vehiculo = (Vehiculo) in.readObject();
-                    vehiculos.add(vehiculo);
-                } catch (java.io.EOFException eof) {
-                    // Fin del archivo alcanzado
+                    Vehiculo v = (Vehiculo) in.readObject();
+                    vehiculos.add(v);
+                } catch (EOFException eof) {
                     break;
                 }
             }
-
         } catch (ClassNotFoundException e) {
-            System.err.println("Error: Clase Vehiculo no encontrada");
             e.printStackTrace();
-        } catch (IOException e) {
-            System.err.println("Error al leer el archivo: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            if (in != null) {
-                in.close();
+        }
+        return vehiculos;
+    }
+
+
+    @Override
+    public void guardarVehiculosFile() throws IOException {
+        //Abrimos nuestro archivo vehiculos.dat y con el parametro false indicamos sobrescribir (no agregar)
+        // Si el archivo no existe, lo crea automáticamente sino, si existe, lo borra y empieza desde cero.
+        FileOutputStream fileOutput = new FileOutputStream("vehiculos.dat", false);
+        ObjectOutputStream out = new ObjectOutputStream(fileOutput);
+        try (out) {
+            for (Vehiculo v : vehiculos) {
+                out.writeObject(v);
             }
         }
-
-        return vehiculos;
     }
 
     @Override
@@ -130,6 +130,19 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
             System.out.println("--------------------");
         }
        
+    }
+
+    @Override
+    public void vehiculosDadosDeBaja() throws IOException {
+        List<Vehiculo> listadoDeBajas = obtenerVehiculosFile()
+                .stream()
+                .filter(vehiculo -> vehiculo.getFechaBaja() != null)
+                .toList();
+        for (Vehiculo vehiculo : listadoDeBajas) {
+            System.out.println("------------------------------------------------");
+            vehiculo.mostrarInfo();
+            System.out.println("------------------------------------------------");
+        }
     }
 
     //Menu de Opciones
@@ -148,7 +161,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         System.out.print("Seleccione una opción: ");
         do{
             int opcion = scanner.nextInt();
-        }while(!scanner.hasNextInt() && );
+        }while(!scanner.hasNextInt());
         
 
         // Aquí se implementaría la lógica para manejar cada opción seleccionada

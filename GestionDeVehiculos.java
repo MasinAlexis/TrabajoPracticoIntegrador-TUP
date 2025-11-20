@@ -4,6 +4,8 @@ public class GestionDeVehiculos {
 
     public static void main(String[] args) throws IOException {
         SistemaConcesionariaVehiculos gestion = new SistemaConcesionariaVehiculos();
+        // CARGAR VEHÍCULOS PREVIOS
+        gestion.obtenerVehiculosFile();
 
         // Creamos algunos vehículos
         Auto auto = new Auto(37828958L, "Automovil", "Toyota", "Corolla", 2016, "Gris", true, false, "SUV", 4, "Nafta", "Manual");
@@ -20,7 +22,13 @@ public class GestionDeVehiculos {
 
         gestion.guardarVehiculosFile();
         gestion.obtenerVehiculosFile();
+        gestion.mostrarListadoVehiculos();
 
+        System.out.println("Listado Actual ---------------------------------------------------------------");
+        gestion.eliminarVehiculoByDni(37828958L);
+        System.out.println("Eliminado ---------------------------------------------------------------");
+        gestion.vehiculosDadosDeBaja();
+        System.out.println("Listado Actualizado ---------------------------------------------------------------");
         gestion.mostrarListadoVehiculos();
         
     }
