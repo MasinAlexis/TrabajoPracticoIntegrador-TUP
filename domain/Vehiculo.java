@@ -1,10 +1,12 @@
+package domain;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Vehiculo implements Serializable{
 
     private Long dniTitular;
-    private String tipo; // Auto - Motocicleta - Camioneta
+    private String tipo; // domain.Auto - domain.Motocicleta - domain.Camioneta
     private String marca;
     private String modelo;
     private int anioFabricacion;
@@ -41,8 +43,8 @@ public class Vehiculo implements Serializable{
     }
 
     public void mostrarInfo() {
-        System.out.println("Dni Titular de Vehiculo: " + this.dniTitular);
-        System.out.println("Tipo Vehiculo: " + this.tipo);
+        System.out.println("Dni Titular de domain.Vehiculo: " + this.dniTitular);
+        System.out.println("Tipo domain.Vehiculo: " + this.tipo);
         System.out.println("Marca: " + this.marca);
         System.out.println("Modelo: " + this.modelo);
         System.out.println("Año de fabricación: " + this.anioFabricacion);

@@ -1,3 +1,4 @@
+package domain;
 
 public class Motocicleta extends Vehiculo {
 
