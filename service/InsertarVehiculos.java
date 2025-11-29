@@ -6,7 +6,7 @@ import domain.Camioneta;
 
 import java.util.Scanner;
 
-public class InsercionVehiculos {
+public class InsertarVehiculos {
 
     private static Scanner entrada = new Scanner(System.in);
 
@@ -51,7 +51,7 @@ public class InsercionVehiculos {
         Motocicleta moto = new Motocicleta(patente, "Motocicleta", marca, modelo, anioFabricacion,
                 color, esUsado, tuvoMantenimiento, tipoMoto, cilindrada, tipoMotor, tieneBaul);
 
-        System.out.println(">>> Motocicleta cargada correctamente.");
+        System.out.println(">>> Motocicleta cargada correctamente <<<");
 
         return moto;
     }
@@ -96,7 +96,7 @@ public class InsercionVehiculos {
         Auto nuevoAuto = new Auto(patente, "Auto", marca, modelo, anioFabricacion,
                 color, esUsado, tuvoMantenimiento, carroceria, cantidadDePuertas, tipoCombustible, transmision);
 
-        System.out.println(">>> Auto cargado correctamente.");
+        System.out.println(">>> Auto cargado correctamente <<<");
 
         return nuevoAuto;
     }
@@ -141,7 +141,7 @@ public class InsercionVehiculos {
         Camioneta nuevaCamioneta = new Camioneta (patente, "Auto", marca, modelo, anioFabricacion, color,
                 esUsado, tuvoMantenimiento, tipoCabina, capacidadDeCarga, tipoTraccion, tieneCajaCubierta);
 
-        System.out.println(">>> Camioneta cargado correctamente.");
+        System.out.println(">>> Camioneta cargado correctamente <<<");
 
         return nuevaCamioneta;
     }
