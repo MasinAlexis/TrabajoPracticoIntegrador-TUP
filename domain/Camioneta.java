@@ -2,27 +2,31 @@ package domain;
 
 import java.io.Serializable;
 
-public class Camioneta extends Vehiculo  implements Serializable {
+public class Camioneta extends Vehiculo implements Serializable {
 
-    //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
+    // Por si en un futuro se modifica la clase, para poder mantener el control de
+    // versiones
     private static final long serialVersionUID = 1L;
 
     private String tipoCabina;
     private double capacidadCarga; // en kilogramos
-    private String tipoTraccion;   // 4x2, 4x4
+    private String tipoTraccion; // 4x2, 4x4
     private boolean tieneCajaCubierta;
 
-    public Camioneta() {}
+    public Camioneta() {
+    }
 
-    public Camioneta(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
-                     boolean tuvoMantenimiento, String tipoCabina, double capacidadCarga, String tipoTraccion,
-                     boolean tieneCajaCubierta) {
+    public Camioneta(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color,
+            boolean esUsado,
+            boolean tuvoMantenimiento, String tipoCabina, double capacidadCarga, String tipoTraccion,
+            boolean tieneCajaCubierta) {
         super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
         this.tipoCabina = tipoCabina;
         this.capacidadCarga = capacidadCarga;
         this.tipoTraccion = tipoTraccion;
-        this. tieneCajaCubierta = tieneCajaCubierta;
+        this.tieneCajaCubierta = tieneCajaCubierta;
     }
+
     @Override
     public String toString() {
         return super.toString() + "\n" +
@@ -44,6 +48,7 @@ public class Camioneta extends Vehiculo  implements Serializable {
     public String getTipoCabina() {
         return this.tipoCabina;
     }
+
     public void setTipoCabina(String tipoCabina) {
         this.tipoCabina = tipoCabina;
     }
@@ -51,6 +56,7 @@ public class Camioneta extends Vehiculo  implements Serializable {
     public double getCapacidadCarga() {
         return this.capacidadCarga;
     }
+
     public void setCapacidadCarga(double capacidadCarga) {
         this.capacidadCarga = capacidadCarga;
     }
@@ -58,6 +64,7 @@ public class Camioneta extends Vehiculo  implements Serializable {
     public String getTipoTraccion() {
         return this.tipoTraccion;
     }
+
     public void setTipoTraccion(String tipoTraccion) {
         this.tipoTraccion = tipoTraccion;
     }
@@ -65,6 +72,7 @@ public class Camioneta extends Vehiculo  implements Serializable {
     public boolean isTieneCajaCubierta() {
         return this.tieneCajaCubierta;
     }
+
     public void setTieneCajaCubierta(boolean tieneCajaCubierta) {
         this.tieneCajaCubierta = tieneCajaCubierta;
     }

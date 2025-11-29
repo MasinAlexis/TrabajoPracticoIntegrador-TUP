@@ -17,4 +17,11 @@ public interface GestionVehiculos {
     void guardarVehiculosFile() throws IOException;
     //Mostrar listado de vehiculos desde el archivo
     void mostrarListadoVehiculos();
+
+    //Cargar colas de vehiculos en taller y lavadero
+    void obtenerVehiculosTallerFile() throws IOException;
+    void obtenerVehiculosLavaderoFile() throws IOException;
+    //Guardar colas de vehiculos en taller y lavadero
+    void guardarVehiculosTallerFile() throws IOException;
+    void guardarVehiculosLavaderoFile() throws IOException;
 }

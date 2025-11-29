@@ -45,6 +45,7 @@ public class Main {
                     break;
                 case 4:
                     //Listar vehículos en mantenimiento
+                    gestion.listarVehiculosEnMantenimiento();
                     System.out.println("\nPresione Enter para continuar...");
                     scanner.nextLine();
                     break;
