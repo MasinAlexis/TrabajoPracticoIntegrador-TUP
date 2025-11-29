@@ -14,10 +14,10 @@ public class Camioneta extends Vehiculo  implements Serializable {
 
     public Camioneta() {}
 
-    public Camioneta(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+    public Camioneta(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                      boolean tuvoMantenimiento, String tipoCabina, double capacidadCarga, String tipoTraccion,
                      boolean tieneCajaCubierta) {
-        super(dniTitular, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+        super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
         this.tipoCabina = tipoCabina;
         this.capacidadCarga = capacidadCarga;
         this.tipoTraccion = tipoTraccion;

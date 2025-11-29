@@ -43,12 +43,12 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
     }
 
     @Override
-    public void eliminarVehiculoByDni(Long dniTitular) throws IOException {
+    public void eliminarVehiculoByDni(String patente) throws IOException {
         // El metodo ya carga nuestro atributo vehiculos con la lista actual
         List<Vehiculo> listadoVehiculos = obtenerVehiculosFile();
 
         Vehiculo vehiculo = listadoVehiculos.stream()
-                .filter(v -> v.getNumeroDeMotor().equals(dniTitular))
+                .filter(v -> v.getPatente().equals(patente))
                 .findFirst()
                 .orElse(null);
 
@@ -70,7 +70,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         List<Vehiculo> listadoVehiculos = obtenerVehiculosFile();
 
         Vehiculo vehiculo = listadoVehiculos.stream()
-                .filter(v -> v.getNumeroDeMotor().equals(vehiculoActualizado.getNumeroDeMotor()))
+                .filter(v -> v.getPatente().equals(vehiculoActualizado.getPatente()))
                 .findFirst()
                 .orElse(null);
 
@@ -79,7 +79,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         }
 
         // Actualizamos nuestro vehiculo
-        vehiculo.setNumeroDeMotor(vehiculoActualizado.getNumeroDeMotor());
+        vehiculo.setPatente(vehiculoActualizado.getPatente());
         vehiculo.setTipo(vehiculoActualizado.getTipo());
         vehiculo.setMarca(vehiculoActualizado.getMarca());
         vehiculo.setModelo(vehiculoActualizado.getModelo());

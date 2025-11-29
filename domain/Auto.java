@@ -15,10 +15,10 @@ public class Auto extends Vehiculo  implements Serializable {
     public Auto() {
     }
 
-    public Auto(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+    public Auto(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                 boolean tuvoMantenimiento, String carroceria, int cantidadPuertas, String tipoCombustible,
                 String transmision) {
-        super(dniTitular, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+        super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
         this.carroceria = carroceria;
         this.cantidadPuertas = cantidadPuertas;
         this.tipoCombustible = tipoCombustible;

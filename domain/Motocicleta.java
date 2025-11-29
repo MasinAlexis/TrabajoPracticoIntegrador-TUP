@@ -15,9 +15,9 @@ public class Motocicleta extends Vehiculo  implements Serializable {
     public Motocicleta() {
     }
 
-    public Motocicleta(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+    public Motocicleta(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                        boolean tuvoMantenimiento, String tipoMoto, Integer cilindrada, String tipoMotor, boolean tieneBaul) {
-        super(dniTitular, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+        super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
         this.tipoMoto = tipoMoto;
         this.cilindrada = cilindrada;
         this.tipoMotor = tipoMotor;

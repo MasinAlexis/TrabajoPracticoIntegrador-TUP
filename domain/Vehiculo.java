@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Vehiculo {
 
-    private Long numeroDeMotor;
+    private String patente;
     private String tipo; // domain.Auto - domain.Motocicleta - domain.Camioneta
     private String marca;
     private String modelo;
@@ -17,9 +17,9 @@ public class Vehiculo {
     public Vehiculo() {
     }
 
-    public Vehiculo(Long numeroDeMotor, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+    public Vehiculo(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                     boolean tuvoMantenimiento) {
-        this.numeroDeMotor = numeroDeMotor;
+        this.patente = patente;
         this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
@@ -31,7 +31,7 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "numeroDeMotor: " + numeroDeMotor + "\n" +
+        return "patente: " + patente + "\n" +
                 "tipo: " + tipo + "\n" +
                 "marca: " + marca + "\n" +
                 "modelo: " + modelo + "\n" +
@@ -42,7 +42,7 @@ public class Vehiculo {
     }
 
     public void mostrarInfo() {
-        System.out.println("Numero de motor del vehiculo: " + this.numeroDeMotor);
+        System.out.println("Patente del vehiculo: " + this.patente);
         System.out.println("Tipo Vehiculo: " + this.tipo);
         System.out.println("Marca: " + this.marca);
         System.out.println("Modelo: " + this.modelo);
@@ -53,11 +53,11 @@ public class Vehiculo {
         System.out.println("Fecha de Baja: " + (this.fechaBaja == null ? "Activo" : this.fechaBaja));
     }
 
-    public Long getNumeroDeMotor() {
-        return numeroDeMotor;
+    public String getPatente() {
+        return patente;
     }
-    public void setNumeroDeMotor(Long dniTitular) {
-        this.numeroDeMotor = numeroDeMotor;
+    public void setPatente(String patente) {
+        this.patente = patente;
     }
 
     public String getTipo() {

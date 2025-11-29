@@ -14,8 +14,8 @@ public class InsercionVehiculos {
 
         System.out.println("----- Ingrese los datos de la Moto -----");
 
-        System.out.print("Número del motor:");
-        Long numeroDeMotor = Long.parseLong(entrada.nextLine());
+        System.out.print("Patente: ");
+        String patente = entrada.nextLine();
 
         System.out.print("Marca: ");
         String marca = entrada.nextLine();
@@ -48,7 +48,7 @@ public class InsercionVehiculos {
         boolean tieneBaul = entrada.nextLine().equals("Si");
 
         // Crear la instancia
-        Motocicleta moto = new Motocicleta( numeroDeMotor, "Motocicleta", marca, modelo, anioFabricacion,
+        Motocicleta moto = new Motocicleta(patente, "Motocicleta", marca, modelo, anioFabricacion,
                 color, esUsado, tuvoMantenimiento, tipoMoto, cilindrada, tipoMotor, tieneBaul);
 
         System.out.println(">>> Motocicleta cargada correctamente.");
@@ -59,8 +59,8 @@ public class InsercionVehiculos {
     public static Auto insertarAutomovil() {
         System.out.println("----- Ingrese los datos del Auto -----");
 
-        System.out.print("Número del motor:");
-        Long numeroDeMotor = Long.parseLong(entrada.nextLine());
+        System.out.print("Patente: ");
+        String patente = entrada.nextLine();
 
         System.out.print("Marca: ");
         String marca = entrada.nextLine();
@@ -93,7 +93,7 @@ public class InsercionVehiculos {
         String transmision = entrada.nextLine();
 
         // Crear la instancia
-        Auto nuevoAuto = new Auto(numeroDeMotor, "Auto", marca, modelo, anioFabricacion,
+        Auto nuevoAuto = new Auto(patente, "Auto", marca, modelo, anioFabricacion,
                 color, esUsado, tuvoMantenimiento, carroceria, cantidadDePuertas, tipoCombustible, transmision);
 
         System.out.println(">>> Auto cargado correctamente.");
@@ -104,8 +104,8 @@ public class InsercionVehiculos {
     public static Camioneta insertarCamioneta() {
         System.out.println("----- Ingrese los datos de la Camioneta -----");
 
-        System.out.print("Número del motor:");
-        Long numeroDeMotor = Long.parseLong(entrada.nextLine());
+        System.out.print("Patente: ");
+        String patente = entrada.nextLine();
 
         System.out.print("Marca: ");
         String marca = entrada.nextLine();
@@ -138,7 +138,7 @@ public class InsercionVehiculos {
         Boolean tieneCajaCubierta = entrada.nextLine().equals("Si");
 
         // Crear la instancia
-        Camioneta nuevaCamioneta = new Camioneta (numeroDeMotor, "Auto", marca, modelo, anioFabricacion, color,
+        Camioneta nuevaCamioneta = new Camioneta (patente, "Auto", marca, modelo, anioFabricacion, color,
                 esUsado, tuvoMantenimiento, tipoCabina, capacidadDeCarga, tipoTraccion, tieneCajaCubierta);
 
         System.out.println(">>> Camioneta cargado correctamente.");
