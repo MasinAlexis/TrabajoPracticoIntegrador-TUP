@@ -1,6 +1,11 @@
 package domain;
 
-public class Auto extends Vehiculo {
+import java.io.Serializable;
+
+public class Auto extends Vehiculo  implements Serializable {
+
+    //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
+    private static final long serialVersionUID = 1L;
 
     private String carroceria;
     private int cantidadPuertas;

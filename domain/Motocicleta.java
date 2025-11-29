@@ -1,6 +1,11 @@
 package domain;
 
-public class Motocicleta extends Vehiculo {
+import java.io.Serializable;
+
+public class Motocicleta extends Vehiculo  implements Serializable {
+
+    //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
+    private static final long serialVersionUID = 1L;
 
     private String tipoMoto; // deportiva, naked, scooter, touring, enduro
     private Integer cilindrada; // en cc

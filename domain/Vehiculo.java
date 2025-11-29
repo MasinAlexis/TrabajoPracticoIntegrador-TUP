@@ -1,11 +1,10 @@
 package domain;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Vehiculo implements Serializable{
+public class Vehiculo {
 
-    private Long dniTitular;
+    private Long numeroDeMotor;
     private String tipo; // domain.Auto - domain.Motocicleta - domain.Camioneta
     private String marca;
     private String modelo;
@@ -18,9 +17,9 @@ public class Vehiculo implements Serializable{
     public Vehiculo() {
     }
 
-    public Vehiculo(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+    public Vehiculo(Long numeroDeMotor, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                     boolean tuvoMantenimiento) {
-        this.dniTitular = dniTitular;
+        this.numeroDeMotor = numeroDeMotor;
         this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
@@ -32,7 +31,7 @@ public class Vehiculo implements Serializable{
 
     @Override
     public String toString() {
-        return "dniTitular: " + dniTitular + "\n" +
+        return "numeroDeMotor: " + numeroDeMotor + "\n" +
                 "tipo: " + tipo + "\n" +
                 "marca: " + marca + "\n" +
                 "modelo: " + modelo + "\n" +
@@ -43,8 +42,8 @@ public class Vehiculo implements Serializable{
     }
 
     public void mostrarInfo() {
-        System.out.println("Dni Titular de domain.Vehiculo: " + this.dniTitular);
-        System.out.println("Tipo domain.Vehiculo: " + this.tipo);
+        System.out.println("Numero de motor del vehiculo: " + this.numeroDeMotor);
+        System.out.println("Tipo Vehiculo: " + this.tipo);
         System.out.println("Marca: " + this.marca);
         System.out.println("Modelo: " + this.modelo);
         System.out.println("Año de fabricación: " + this.anioFabricacion);
@@ -54,11 +53,11 @@ public class Vehiculo implements Serializable{
         System.out.println("Fecha de Baja: " + (this.fechaBaja == null ? "Activo" : this.fechaBaja));
     }
 
-    public Long getDniTitular() {
-        return dniTitular;
+    public Long getNumeroDeMotor() {
+        return numeroDeMotor;
     }
-    public void setDniTitular(Long dniTitular) {
-        this.dniTitular = dniTitular;
+    public void setNumeroDeMotor(Long dniTitular) {
+        this.numeroDeMotor = numeroDeMotor;
     }
 
     public String getTipo() {

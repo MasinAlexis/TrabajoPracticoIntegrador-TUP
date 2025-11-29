@@ -48,7 +48,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         List<Vehiculo> listadoVehiculos = obtenerVehiculosFile();
 
         Vehiculo vehiculo = listadoVehiculos.stream()
-                .filter(v -> v.getDniTitular().equals(dniTitular))
+                .filter(v -> v.getNumeroDeMotor().equals(dniTitular))
                 .findFirst()
                 .orElse(null);
 
@@ -70,7 +70,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         List<Vehiculo> listadoVehiculos = obtenerVehiculosFile();
 
         Vehiculo vehiculo = listadoVehiculos.stream()
-                .filter(v -> v.getDniTitular().equals(vehiculoActualizado.getDniTitular()))
+                .filter(v -> v.getNumeroDeMotor().equals(vehiculoActualizado.getNumeroDeMotor()))
                 .findFirst()
                 .orElse(null);
 
@@ -79,7 +79,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         }
 
         // Actualizamos nuestro vehiculo
-        vehiculo.setDniTitular(vehiculoActualizado.getDniTitular());
+        vehiculo.setNumeroDeMotor(vehiculoActualizado.getNumeroDeMotor());
         vehiculo.setTipo(vehiculoActualizado.getTipo());
         vehiculo.setMarca(vehiculoActualizado.getMarca());
         vehiculo.setModelo(vehiculoActualizado.getModelo());
