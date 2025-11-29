@@ -1,6 +1,11 @@
 package domain;
 
-public class Auto extends Vehiculo {
+import java.io.Serializable;
+
+public class Auto extends Vehiculo  implements Serializable {
+
+    //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
+    private static final long serialVersionUID = 1L;
 
     private String carroceria;
     private int cantidadPuertas;
@@ -10,10 +15,10 @@ public class Auto extends Vehiculo {
     public Auto() {
     }
 
-    public Auto(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+    public Auto(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                 boolean tuvoMantenimiento, String carroceria, int cantidadPuertas, String tipoCombustible,
                 String transmision) {
-        super(dniTitular, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+        super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
         this.carroceria = carroceria;
         this.cantidadPuertas = cantidadPuertas;
         this.tipoCombustible = tipoCombustible;

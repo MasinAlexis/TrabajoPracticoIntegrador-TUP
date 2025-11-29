@@ -1,6 +1,11 @@
 package domain;
 
-public class Camioneta extends Vehiculo {
+import java.io.Serializable;
+
+public class Camioneta extends Vehiculo  implements Serializable {
+
+    //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
+    private static final long serialVersionUID = 1L;
 
     private String tipoCabina;
     private double capacidadCarga; // en kilogramos
@@ -9,10 +14,10 @@ public class Camioneta extends Vehiculo {
 
     public Camioneta() {}
 
-    public Camioneta(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+    public Camioneta(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
                      boolean tuvoMantenimiento, String tipoCabina, double capacidadCarga, String tipoTraccion,
                      boolean tieneCajaCubierta) {
-        super(dniTitular, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+        super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
         this.tipoCabina = tipoCabina;
         this.capacidadCarga = capacidadCarga;
         this.tipoTraccion = tipoTraccion;
