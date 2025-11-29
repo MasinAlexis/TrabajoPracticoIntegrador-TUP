@@ -5,8 +5,11 @@ import java.time.LocalDate;
 
 public class Vehiculo implements Serializable {
 
+    //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
+    private static final long serialVersionUID = 1L;
+
     private String patente;
-    private String tipo; // domain.Auto - domain.Motocicleta - domain.Camioneta
+    private String tipo; //Auto - Motocicleta - Camioneta
     private String marca;
     private String modelo;
     private int anioFabricacion;
@@ -19,7 +22,7 @@ public class Vehiculo implements Serializable {
     }
 
     public Vehiculo(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
-                    boolean tuvoMantenimiento) {
+                    boolean tuvoMantenimiento, LocalDate fechaBaja) {
         this.patente = patente;
         this.tipo = tipo;
         this.marca = marca;
@@ -28,6 +31,7 @@ public class Vehiculo implements Serializable {
         this.color = color;
         this.esUsado = esUsado;
         this.tuvoMantenimiento = tuvoMantenimiento;
+        this.fechaBaja = fechaBaja;
     }
 
     @Override

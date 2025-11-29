@@ -8,13 +8,12 @@ import java.util.List;
 public interface GestionVehiculos {
     void agregarVehiculo() throws IOException;
     void eliminarVehiculoPorPatente() throws IOException;
-    void vehiculosDadosDeBaja() throws IOException;
-    Vehiculo actualizarVehiculo(Vehiculo vehiculoActualizado) throws IOException;
+    void actualizarVehiculo() throws IOException;
     List<Vehiculo> agregarVehiculoAMantenimiento();
     List<Vehiculo> agregarVehiculoALavadero();
     //Gestion de vehiculos en el archivo
     List<Vehiculo> obtenerVehiculosFile() throws IOException;
     void guardarVehiculosFile() throws IOException;
     //Mostrar listado de vehiculos desde el archivo
-    void mostrarListadoVehiculos();
+    void mostrarListadoVehiculos() throws IOException;
 }
