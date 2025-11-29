@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Camioneta extends Vehiculo implements Serializable {
 
@@ -18,9 +19,9 @@ public class Camioneta extends Vehiculo implements Serializable {
 
     public Camioneta(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color,
             boolean esUsado,
-            boolean tuvoMantenimiento, String tipoCabina, double capacidadCarga, String tipoTraccion,
+            boolean tuvoMantenimiento, LocalDate fechaBaja, String tipoCabina, double capacidadCarga, String tipoTraccion,
             boolean tieneCajaCubierta) {
-        super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+        super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento, fechaBaja);
         this.tipoCabina = tipoCabina;
         this.capacidadCarga = capacidadCarga;
         this.tipoTraccion = tipoTraccion;
