@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Vehiculo {
+public class Vehiculo implements Serializable {
 
     private String patente;
     private String tipo; // domain.Auto - domain.Motocicleta - domain.Camioneta

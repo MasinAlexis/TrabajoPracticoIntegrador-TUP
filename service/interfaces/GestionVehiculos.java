@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface GestionVehiculos {
     void agregarVehiculo() throws IOException;
-    void eliminarVehiculoByDni(String patente) throws IOException;
+    void eliminarVehiculoPorPatente() throws IOException;
     void vehiculosDadosDeBaja() throws IOException;
     Vehiculo actualizarVehiculo(Vehiculo vehiculoActualizado) throws IOException;
     List<Vehiculo> agregarVehiculoAMantenimiento();

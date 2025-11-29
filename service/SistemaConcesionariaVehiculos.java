@@ -4,7 +4,6 @@ import domain.Vehiculo;
 import service.interfaces.GestionVehiculos;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,26 +13,27 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
     private List<Vehiculo> vehiculos = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
     Integer opcion = 0;
+    String entrada = "";
 
     @Override
     public void agregarVehiculo() throws IOException {
-        System.out.println("------------ Menú Inserción de domain.Vehiculo ------------");
-        System.out.println("| - Seleccione que tipo de vehículo desea agregar         |");
-        System.out.println("| 1. Automovil                                            |");
-        System.out.println("| 2. Camioneta                                            |");
-        System.out.println("| 3. Motocicleta                                          |");
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("------------ Menú Inserción de Vehiculo ------------");
+        System.out.println("| - Seleccione que tipo de vehículo desea agregar  |");
+        System.out.println("| 1. Automovil                                     |");
+        System.out.println("| 2. Camioneta                                     |");
+        System.out.println("| 3. Motocicleta                                   |");
+        System.out.println("----------------------------------------------------");
         System.out.print("Seleccione una opción: ");
-        opcion = scanner.nextInt();
+        opcion = Integer.parseInt(scanner.nextLine());
         switch (opcion) {
             case 1:
-                guardarVehiculo(InsercionVehiculos.insertarAutomovil());
+                guardarVehiculo(InsertarVehiculos.insertarAutomovil());
                 break;
             case 2:
-                guardarVehiculo(InsercionVehiculos.insertarCamioneta());
+                guardarVehiculo(InsertarVehiculos.insertarCamioneta());
                 break;
             case 3:
-                guardarVehiculo(InsercionVehiculos.insertarMotocicleta());
+                guardarVehiculo(InsertarVehiculos.insertarMotocicleta());
                 break;
             default:
                 System.out.println("Tratar excepcion");
@@ -43,23 +43,18 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
     }
 
     @Override
-    public void eliminarVehiculoByDni(String patente) throws IOException {
+    public void eliminarVehiculoPorPatente() throws IOException {
+
+        System.out.println("------------ Menú de eliminacion de Vehiculo ---------");
+        System.out.println("| - -Ingrese la patente del vehículo a eliminar      |");
+        System.out.println("------------------------------------------------------");
+        System.out.print("Patente: ");
+        entrada = scanner.nextLine();
         // El metodo ya carga nuestro atributo vehiculos con la lista actual
         List<Vehiculo> listadoVehiculos = obtenerVehiculosFile();
 
-        Vehiculo vehiculo = listadoVehiculos.stream()
-                .filter(v -> v.getPatente().equals(patente))
-                .findFirst()
-                .orElse(null);
-
-        if (vehiculo == null) {
-            System.out.println("Agregar excepcion para: No existe un vehiculo con ese titular.");
-        }
-        // Al modificar el objeto, lo estamos modificando dentro del mismo listado
-        vehiculo.setFechaBaja(LocalDate.now());
-
         // Asignamos a nuestra lista la actualizada
-        this.vehiculos = listadoVehiculos;
+        this.vehiculos = EliminarVehiculo.bajaLogicaDeVehiculo(listadoVehiculos, entrada);
         guardarVehiculosFile();
         System.out.println("Vehículo dado de baja correctamente.");
     }
@@ -191,7 +186,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
             System.out.println("----------------------------------------");
 
             System.out.print("Seleccione una opción: ");
-            opcion = scanner.nextInt();
+            opcion = Integer.parseInt(scanner.nextLine());
 
             //Llamamos a la funcion necesaria para realizar la accion seleccionada
             switch (opcion) {
@@ -199,7 +194,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
                     agregarVehiculo();
                     break;
                 case 2:
-                    // código a ejecutar
+                    eliminarVehiculoPorPatente();
                     break;
                 case 3:
                     // código a ejecutar
