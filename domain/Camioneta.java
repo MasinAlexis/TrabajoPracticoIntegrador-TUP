@@ -1,4 +1,4 @@
-import java.math.BigInteger;
+package domain;
 
 public class Camioneta extends Vehiculo {
 

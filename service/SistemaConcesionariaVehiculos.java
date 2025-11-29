@@ -1,3 +1,8 @@
+package service;
+
+import domain.Vehiculo;
+import service.interfaces.GestionVehiculos;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,10 +12,34 @@ import java.util.Scanner;
 public class SistemaConcesionariaVehiculos implements GestionVehiculos {
 
     private List<Vehiculo> vehiculos = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
+    Integer opcion = 0;
 
     @Override
-    public void agregarVehiculo(Vehiculo vehiculo) throws IOException {
-        guardarVehiculo(vehiculo);
+    public void agregarVehiculo() throws IOException {
+        System.out.println("------------ Menú Inserción de domain.Vehiculo ------------");
+        System.out.println("| - Seleccione que tipo de vehículo desea agregar         |");
+        System.out.println("| 1. Automovil                                            |");
+        System.out.println("| 2. Camioneta                                            |");
+        System.out.println("| 3. Motocicleta                                          |");
+        System.out.println("-----------------------------------------------------------");
+        System.out.print("Seleccione una opción: ");
+        opcion = scanner.nextInt();
+        switch (opcion) {
+            case 1:
+                guardarVehiculo(InsercionVehiculos.insertarAutomovil());
+                break;
+            case 2:
+                guardarVehiculo(InsercionVehiculos.insertarCamioneta());
+                break;
+            case 3:
+                guardarVehiculo(InsercionVehiculos.insertarMotocicleta());
+                break;
+            default:
+                System.out.println("Tratar excepcion");
+                break;
+        }
+        guardarVehiculosFile();
     }
 
     @Override
@@ -147,42 +176,56 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         }
     }
 
-    // Menu de Opciones
-    public void menuOpciones() {
-        // System.out.println("----- Menú de Opciones -----");
-        // System.out.println("1. Agregar Vehículo");
-        // System.out.println("2. Eliminar Vehículo");
-        // System.out.println("3. Actualizar Vehículo");
-        // System.out.println("4. Listar Vehículos en Mantenimiento");
-        // System.out.println("5. Listar Vehículos en Lavadero");
-        // // System.out.println("6. Guardar Vehículos en Archivo");
-        // // System.out.println("7. Obtener Vehículos desde Archivo");
-        // System.out.println("8. Mostrar Listado de Vehículos");
-        // System.out.println("9. Salir");
-        // Scanner scanner = new Scanner(System.in);
-        // System.out.print("Seleccione una opción: ");
-        // do {
-        //     int opcion = scanner.nextInt();
-        // } while (!scanner.hasNextInt());
+    //Menu de Opciones
+    private void menuOpciones() throws IOException {
 
-        // // Aquí se implementaría la lógica para manejar cada opción seleccionada
-        // scanner.close();
-        System.out.print("\n");
-        System.out.print("##---Sistema de Concesionaria---##\n");
-		System.out.print("|--------------------------------|\n");
-		System.out.print("|  1 - Agregar Vehiculo          |\n");
-		System.out.print("|  2 - Eliminar Vehiculo         |\n");
-		System.out.print("|  3 - Actualizar Vehiculo       |\n");
-		System.out.print("|  4 - Listar Vehiculos en Mant. |\n");
-        System.out.print("|  5 - Listar Vehiculos en Lav.  |\n");
-        System.out.print("|  6 - Mostrar Listado de Veh.   |\n");
-		System.out.print("|--------------------------------|\n");
-        System.out.print("Presione cualquiera otra tecla para salir.\n");
-		System.out.print("Elija una opcion: ");
+        do{
+            System.out.println("----------- Menú de Opciones -----------");
+            System.out.println("| 1. Agregar Vehículo                  |");
+            System.out.println("| 2. Eliminar Vehículo                 |");
+            System.out.println("| 3. Actualizar Vehículo               |");
+            System.out.println("| 4. Listar Vehículos en Mantenimiento |");
+            System.out.println("| 5. Listar Vehículos en Lavadero      |");
+            System.out.println("| 6. Mostrar Listado de Vehículos      |");
+            System.out.println("| 7. Salir                             |");
+            System.out.println("----------------------------------------");
+
+            System.out.print("Seleccione una opción: ");
+            opcion = scanner.nextInt();
+
+            //Llamamos a la funcion necesaria para realizar la accion seleccionada
+            switch (opcion) {
+                case 1:
+                    agregarVehiculo();
+                    break;
+                case 2:
+                    // código a ejecutar
+                    break;
+                case 3:
+                    // código a ejecutar
+                    break;
+                case 4:
+                    // código a ejecutar
+                    break;
+                case 5:
+                    // código a ejecutar
+                    break;
+                case 6:
+                    // código a ejecutar
+                    break;
+                default:
+                    // código si no coincide ningún caso
+                    break;
+            }
+
+        }while(opcion != 7);
+
+        // Aquí se implementaría la lógica para manejar cada opción seleccionada
+        scanner.close();
 
     }
 
-    public void iniciarSistema() {
+    public void iniciarSistema() throws IOException {
         // Aquí se implementaría la lógica para interactuar con el usuario,
         // mostrar el menú y manejar las opciones seleccionadas.
         menuOpciones();

@@ -1,8 +1,12 @@
+package service.interfaces;
+
+import domain.Vehiculo;
+
 import java.io.IOException;
 import java.util.List;
 
 public interface GestionVehiculos {
-    void agregarVehiculo(Vehiculo vehiculo) throws IOException;
+    void agregarVehiculo() throws IOException;
     void eliminarVehiculoByDni(Long dniTitular) throws IOException;
     void vehiculosDadosDeBaja() throws IOException;
     Vehiculo actualizarVehiculo(Vehiculo vehiculoActualizado) throws IOException;
