@@ -4,7 +4,13 @@ import domain.Vehiculo;
 import excepciones.ExceptionVechiculoNoEncontrado;
 import service.interfaces.GestionVehiculos;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.File;
+import java.io.ObjectInputStream;
+import java.io.FileInputStream;
+import java.io.EOFException;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,7 +23,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
     String entrada = "";
 
     @Override
-    public void agregarVehiculo() throws IOException {
+    public void agregarVehiculo() {
         System.out.println("------------ Menú Inserción de Vehiculo ------------");
         System.out.println("| - Seleccione que tipo de vehículo desea agregar  |");
         System.out.println("| 1. Automovil                                     |");
@@ -51,7 +57,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
     }
 
     @Override
-    public void eliminarVehiculoPorPatente() throws IOException {
+    public void eliminarVehiculoPorPatente() {
 
         System.out.println("------------ Menú de eliminacion de Vehiculo ---------");
         System.out.println("| - Ingrese la patente del vehículo a eliminar       |");
@@ -165,7 +171,6 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
             vehiculo.mostrarInfo();
             System.out.println("---------------------------------------");
         }
-
     }
 
     //Menu de Opciones
@@ -197,7 +202,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
                         actualizarVehiculo();
                         break;
                     case 4:
-                        // código a ejecutar
+                        obtenerNumeroCeroKilometro();
                         break;
                     case 5:
                         // código a ejecutar
@@ -225,5 +230,18 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         // Aquí se implementaría la lógica para interactuar con el usuario,
         // mostrar el menú y manejar las opciones seleccionadas.
         menuOpciones();
+    }
+
+    @Override
+    public Integer obtenerNumeroCeroKilometro() throws IOException {
+
+        List<Vehiculo> listado = obtenerVehiculosFile();
+        Integer identificadorTemporal = 0;
+        for (Vehiculo vehiculo : listado) {
+            if(!vehiculo.getEsUsado()) {
+                identificadorTemporal += 1;
+            }
+        }
+        return identificadorTemporal+1;
     }
 }

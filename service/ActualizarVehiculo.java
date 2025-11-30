@@ -4,6 +4,7 @@ import domain.Vehiculo;
 import excepciones.ExceptionTipoDeVehiculoNoValido;
 import excepciones.ExceptionVechiculoNoEncontrado;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ public class ActualizarVehiculo {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static List<Vehiculo> actualizarVehiculo(List<Vehiculo> listadoVehiculos, Integer tipoVehiculo, String patente) {
+    public static List<Vehiculo> actualizarVehiculo(List<Vehiculo> listadoVehiculos, Integer tipoVehiculo, String patente) throws IOException {
 
         Vehiculo vehiculo = listadoVehiculos.stream()
                 .filter(v -> v.getPatente().equalsIgnoreCase(patente))

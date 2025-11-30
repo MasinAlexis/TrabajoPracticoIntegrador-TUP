@@ -3,20 +3,37 @@ package service;
 import domain.Auto;
 import domain.Motocicleta;
 import domain.Camioneta;
+import enums.OpcionSiNo;
+import enums.TipoCombustible;
+import excepciones.ExceptionParametrosEntrada;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class InsertarVehiculos {
 
+    static SistemaConcesionariaVehiculos gestionVehiculos = new SistemaConcesionariaVehiculos();
     private static Scanner entrada = new Scanner(System.in);
 
-    public static Motocicleta insertarMotocicleta() {
+    public static Motocicleta insertarMotocicleta() throws IOException {
 
         System.out.println("----- Ingrese los datos de la Moto -----");
-        Motocicleta motocicleta = new Motocicleta();
 
-        System.out.print("Patente: ");
-        String patente = entrada.nextLine().toUpperCase();
+        System.out.print("¿Es usado?(Si/No): ");
+        boolean esUsado = OpcionSiNo.valueOf(entrada.nextLine().toUpperCase()).equals(OpcionSiNo.SI);
+
+        String patente = "";
+        if (!esUsado) {
+            patente = "TD-0" + gestionVehiculos.obtenerNumeroCeroKilometro();
+        } else {
+            System.out.print("Patente: ");
+            patente = entrada.nextLine().toUpperCase();
+            if(!patente.matches("^[0-9]{3}[A-Z]{3}$") && !patente.matches("^[A-Z]{1}[0-9]{3}[A-Z]{3}$")) {
+                throw new ExceptionParametrosEntrada("La patente: " + patente + " para la motocicleta no tiene el formato correcto.\n" +
+                        "Formatos aceptados: '123ABC' o 'A123BCD'");
+            }
+        }
 
         System.out.print("Marca: ");
         String marca = entrada.nextLine().toUpperCase();
@@ -26,15 +43,15 @@ public class InsertarVehiculos {
 
         System.out.print("Año de fabricación: ");
         Integer anioFabricacion = Integer.parseInt(entrada.nextLine());
+        if (anioFabricacion > LocalDate.now().getYear()) {
+            throw new ExceptionParametrosEntrada("El año de fabricacion no puede ser mayor al año actual.");
+        }
 
         System.out.print("Color: ");
         String color = entrada.nextLine().toUpperCase();
 
-        System.out.print("¿Es usado?(Si/No): ");
-        boolean esUsado = entrada.nextLine().equalsIgnoreCase("SI");;
-
         System.out.print("¿Tuvo mantenimiento? (Si/No): ");
-        boolean tuvoMantenimiento = entrada.nextLine().equalsIgnoreCase("SI");;
+        boolean tuvoMantenimiento = OpcionSiNo.valueOf(entrada.nextLine().toUpperCase()).equals(OpcionSiNo.SI);
 
         System.out.print("Tipo de moto (ej: Enduro, Naked, etc): ");
         String tipoMoto = entrada.nextLine().toUpperCase();
@@ -46,21 +63,37 @@ public class InsertarVehiculos {
         String tipoMotor = entrada.nextLine().toUpperCase();
 
         System.out.print("¿Tiene baúl? (Si/No): ");
-        boolean tieneBaul = (entrada.nextLine()).equalsIgnoreCase("SI");
+        boolean tieneBaul = OpcionSiNo.valueOf(entrada.nextLine().toUpperCase()).equals(OpcionSiNo.SI);
 
         // Crear la instancia
-        motocicleta = new Motocicleta(patente, "Motocicleta", marca, modelo, anioFabricacion,
+        Motocicleta motocicleta = new Motocicleta(patente, "Motocicleta", marca, modelo, anioFabricacion,
                 color, esUsado, tuvoMantenimiento, null,  tipoMoto, cilindrada, tipoMotor, tieneBaul);
 
         System.out.println(">>> Motocicleta cargada correctamente <<<");
+        if (!esUsado) {
+            System.out.println("Su vehículo es 0KM, se le asignó la siguiente patente temporal: " + patente);
+        }
+
         return motocicleta;
     }
 
-    public static Auto insertarAutomovil() {
+    public static Auto insertarAutomovil() throws IOException {
         System.out.println("----- Ingrese los datos del Auto -----");
 
-        System.out.print("Patente: ");
-        String patente = entrada.nextLine().toUpperCase();
+        System.out.print("¿Es usado?(Si/No): ");
+        boolean esUsado = OpcionSiNo.valueOf(entrada.nextLine().toUpperCase()).equals(OpcionSiNo.SI);
+
+        String patente = "";
+        if (!esUsado) {
+            patente = "TD-0" + gestionVehiculos.obtenerNumeroCeroKilometro();
+        } else {
+            System.out.print("Patente: ");
+            patente = entrada.nextLine().toUpperCase();
+            if(!patente.matches("^[A-Z]{3}[0-9]{3}$") && !patente.matches("^[A-Z]{2}[0-9]{3}[A-Z]{2}$")) {
+                throw new ExceptionParametrosEntrada("La patente: " + patente + " para el auto no tiene el formato correcto.\n" +
+                        "Formatos aceptados: 'ABC123' o 'AB123CD'");
+            }
+        }
 
         System.out.print("Marca: ");
         String marca = entrada.nextLine().toUpperCase();
@@ -70,15 +103,15 @@ public class InsertarVehiculos {
 
         System.out.print("Año de fabricación: ");
         Integer anioFabricacion = Integer.parseInt(entrada.nextLine());
+        if (anioFabricacion > LocalDate.now().getYear()) {
+            throw new ExceptionParametrosEntrada("El año de fabricacion no puede ser mayor al año actual.");
+        }
 
         System.out.print("Color: ");
         String color = entrada.nextLine().toUpperCase();
 
-        System.out.print("¿Es usado?(Si/No): ");
-        boolean esUsado = entrada.nextLine().equalsIgnoreCase("SI");;
-
         System.out.print("¿Tuvo mantenimiento? (Si/No): ");
-        boolean tuvoMantenimiento = entrada.nextLine().equalsIgnoreCase("SI");;
+        boolean tuvoMantenimiento = OpcionSiNo.valueOf(entrada.nextLine().toUpperCase()).equals(OpcionSiNo.SI);
 
         System.out.print("Tipo de Carroceria (ej: Sedan, Coupé, Familiar, etc): ");
         String carroceria = entrada.nextLine().toUpperCase();
@@ -87,7 +120,7 @@ public class InsertarVehiculos {
         Integer cantidadDePuertas = Integer.parseInt(entrada.nextLine());
 
         System.out.print("Tipo de combustible (ej: Nafta, Gasoil, etc): ");
-        String tipoCombustible = entrada.nextLine().toUpperCase();
+        String tipoCombustible = TipoCombustible.valueOf(entrada.nextLine().toUpperCase()).toString();
 
         System.out.print("Tipo Transmision (Manual, Automatica): ");
         String transmision = entrada.nextLine().toUpperCase();
@@ -101,11 +134,23 @@ public class InsertarVehiculos {
         return nuevoAuto;
     }
 
-    public static Camioneta insertarCamioneta() {
+    public static Camioneta insertarCamioneta() throws IOException {
         System.out.println("----- Ingrese los datos de la Camioneta -----");
 
-        System.out.print("Patente: ");
-        String patente = entrada.nextLine().toUpperCase();
+        System.out.print("¿Es usado?(Si/No): ");
+        boolean esUsado = OpcionSiNo.valueOf(entrada.nextLine().toUpperCase()).equals(OpcionSiNo.SI);
+
+        String patente = "";
+        if (!esUsado) {
+            patente = "TD-0" + gestionVehiculos.obtenerNumeroCeroKilometro();
+        } else {
+            System.out.print("Patente: ");
+            patente = entrada.nextLine().toUpperCase();
+            if(!patente.matches("^[A-Z]{3}[0-9]{3}$") && !patente.matches("^[A-Z]{2}[0-9]{3}[A-Z]{2}$")) {
+                throw new ExceptionParametrosEntrada("La patente: " + patente + " para el auto no tiene el formato correcto.\n" +
+                        "Formatos aceptados: 'ABC123' o 'AB123CD'");
+            }
+        }
 
         System.out.print("Marca: ");
         String marca = entrada.nextLine().toUpperCase();
@@ -115,15 +160,15 @@ public class InsertarVehiculos {
 
         System.out.print("Año de fabricación: ");
         Integer anioFabricacion = Integer.parseInt(entrada.nextLine());
+        if (anioFabricacion > LocalDate.now().getYear()) {
+            throw new ExceptionParametrosEntrada("El año de fabricacion no puede ser mayor al año actual.");
+        }
 
         System.out.print("Color: ");
         String color = entrada.nextLine().toUpperCase();
 
-        System.out.print("¿Es usado?(Si/No): ");
-        boolean esUsado = entrada.nextLine().equalsIgnoreCase("SI");;
-
         System.out.print("¿Tuvo mantenimiento? (Si/No): ");
-        boolean tuvoMantenimiento = entrada.nextLine().equalsIgnoreCase("SI");;
+        boolean tuvoMantenimiento = OpcionSiNo.valueOf(entrada.nextLine().toUpperCase()).equals(OpcionSiNo.SI);
 
         System.out.print("Tipo de Cabina (ej: Simple, Doble, etc): ");
         String tipoCabina = entrada.nextLine().toUpperCase();
@@ -135,7 +180,7 @@ public class InsertarVehiculos {
         String tipoTraccion = entrada.nextLine().toUpperCase();
 
         System.out.print("Tiene Caja Cubierta (Si, No): ");
-        Boolean tieneCajaCubierta = entrada.nextLine().equalsIgnoreCase("SI");;
+        Boolean tieneCajaCubierta = OpcionSiNo.valueOf(entrada.nextLine().toUpperCase()).equals(OpcionSiNo.SI);
 
         // Crear la instancia
         Camioneta nuevaCamioneta = new Camioneta (patente, "Auto", marca, modelo, anioFabricacion, color,

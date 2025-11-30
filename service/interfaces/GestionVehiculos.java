@@ -16,4 +16,5 @@ public interface GestionVehiculos {
     void guardarVehiculosFile() throws IOException;
     //Mostrar listado de vehiculos desde el archivo
     void mostrarListadoVehiculos() throws IOException;
+    public Integer obtenerNumeroCeroKilometro() throws IOException;
 }
