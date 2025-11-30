@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 import domain.Vehiculo;
 
@@ -43,11 +44,11 @@ public class GestionCola<T> {
      */
     public T procesar() {
         if (cola.isEmpty()) {
-            System.out.println("❌ No hay elementos en " + nombreCola);
+            System.out.println("No hay elementos en " + nombreCola);
             return null;
         }
         T elemento = cola.poll();
-        System.out.println("✓ Elemento procesado de " + nombreCola);
+        System.out.println("Elemento procesado de " + nombreCola);
         System.out.println("Elementos restantes: " + cola.size());
         return elemento;
     }
@@ -85,9 +86,10 @@ public class GestionCola<T> {
         System.out.println("------------ " + nombreCola + " ------------");
         int posicion = 1;
         for (T elemento : cola) {
-            System.out.println("Posición " + posicion++ + ": " + elemento);
+            System.out.println("Posición " + posicion++ + ": " + elemento.toString());
         }
         System.out.println("Total: " + cola.size() + " elementos");
+        
     }
 
     /**

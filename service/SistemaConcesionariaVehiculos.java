@@ -122,12 +122,12 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
 
     // @Override
     // public List<Vehiculo> agregarVehiculoAMantenimiento() {
-    //     return List.of();
+    // return List.of();
     // }
 
     // @Override
     // public List<Vehiculo> agregarVehiculoALavadero() {
-    //     return List.of();
+    // return List.of();
     // }
 
     private void guardarVehiculo(Vehiculo vehiculo) throws IOException {
@@ -230,20 +230,19 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
                         eliminarVehiculoPorPatente();
                         break;
                     case 3:
-                        // código a ejecutar
                         actualizarVehiculo();
                         break;
                     case 4:
-                        // código a ejecutar
                         listarVehiculosEnMantenimiento();
+                        pausar();
                         break;
                     case 5:
-                        // código a ejecutar
                         listarVehiculosEnLavadero();
+                        pausar();
                         break;
                     case 6:
-                        // código a ejecutar
                         mostrarListadoVehiculos();
+                        pausar();
                         break;
                     case 7:
                         // menu de opciones de taller y lavadero
@@ -378,6 +377,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
 
         if (this.vehiculosEnMantenimiento.obtenerCola().contains(vehiculoEncontrado)) {
             System.out.println("El vehículo con patente " + patente + " ya se encuentra en el taller.");
+            pausar();
             return;
         }
 
@@ -390,6 +390,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         } else {
             System.out.println("Vehículo con patente " + patente + " no encontrado.");
         }
+        pausar();
     }
 
     private void enviarVehiculoAlLavadero() throws IOException {
@@ -408,6 +409,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
 
         if (this.vehiculosEnLavadero.obtenerCola().contains(vehiculoEncontrado)) {
             System.out.println("El vehículo con patente " + patente + " ya se encuentra en el Lavadero.");
+            pausar();
             return;
         }
 
@@ -420,6 +422,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         } else {
             System.out.println("Vehículo con patente " + patente + " no encontrado.");
         }
+        pausar();
     }
 
     private void sacarVehiculoDelTaller() throws IOException {
@@ -444,7 +447,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
             this.guardarVehiculosFile();
             this.vehiculosEnMantenimiento.guardarColaFile(nombreArchivoColaMantenimiento);
             this.vehiculosEnLavadero.guardarColaFile(nombreArchivoColaLavadero);
-
+            pausar();
         }
     }
 
@@ -458,9 +461,14 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
                             "Vehículo con patente " + vehiculoProcesado.getPatente() + " ha sido sacado del lavadero.");
 
             this.vehiculosEnLavadero.guardarColaFile(nombreArchivoColaLavadero);
+            pausar();
         }
     }
 
+    private void pausar() {
+        System.out.println("\nPresione Enter para continuar...");
+        scanner.nextLine();
+    }
     /* Comentado porque la Cola ya no se administra en esta clase */
     // private boolean guardarColaFile(String nombreArchivo, Queue<Vehiculo> cola)
     // throws IOException {
