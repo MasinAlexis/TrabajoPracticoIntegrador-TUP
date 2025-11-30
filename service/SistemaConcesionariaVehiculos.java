@@ -7,9 +7,10 @@ import service.interfaces.GestionVehiculos;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-//import java.io.*;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,8 +35,9 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         System.out.println("| 2. Camioneta                                     |");
         System.out.println("| 3. Motocicleta                                   |");
         System.out.println("----------------------------------------------------");
-        // El try captura las excepciones de los metodos de insercion, no es necesario un try/catch en los mismos
-        try{
+        // El try captura las excepciones de los metodos de insercion, no es necesario
+        // un try/catch en los mismos
+        try {
             System.out.print("Seleccione una opción: ");
             opcion = Integer.parseInt(scanner.nextLine());
             switch (opcion) {
@@ -54,7 +56,8 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
             // Guardamos solamente si sale solamente bien
             guardarVehiculosFile();
         } catch (NumberFormatException formatoException) {
-            System.out.println("El valor ingresado no es válido. Mensaje: " + formatoException.getMessage() + " - Intentelo de nuevo");
+            System.out.println("El valor ingresado no es válido. Mensaje: " + formatoException.getMessage()
+                    + " - Intentelo de nuevo");
         } catch (Exception e) {
             System.out.println("Se ha producido un error: " + e.getMessage());
         }
@@ -105,7 +108,8 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
             guardarVehiculosFile();
             System.out.println("Vehículo actualizado correctamente.");
         } catch (NumberFormatException formatoException) {
-            System.out.println("El valor ingresado no es válido. Mensaje: " + formatoException.getMessage() + " - Intentelo de nuevo");
+            System.out.println("El valor ingresado no es válido. Mensaje: " + formatoException.getMessage()
+                    + " - Intentelo de nuevo");
         } catch (Exception e) {
             System.out.println("Se ha producido un error: " + e.getMessage());
         }
@@ -196,7 +200,6 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
 
     // Menu de Opciones
     private void menuOpciones() throws IOException {
-
         try {
             do {
                 System.out.println("----------- Menú de Opciones -----------");
@@ -225,9 +228,11 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
                         break;
                     case 4:
                         // código a ejecutar
+                        listarVehiculosEnMantenimiento();
                         break;
                     case 5:
                         // código a ejecutar
+                        listarVehiculosEnLavadero();
                         break;
                     case 6:
                         // código a ejecutar
@@ -276,10 +281,12 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         this.guardarColaFile("vehiculos_en_lavadero.dat", this.vehiculosEnLavadero);
     }
 
+    @Override
     public void listarVehiculosEnMantenimiento() {
         this.mostrarVehiculosEnCola(this.vehiculosEnMantenimiento);
     }
 
+    @Override
     public void listarVehiculosEnLavadero() {
         this.mostrarVehiculosEnCola(this.vehiculosEnLavadero);
     }
