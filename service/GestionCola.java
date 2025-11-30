@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import domain.Vehiculo;
+
 /*
 Clase generica para gestionar las colas de vehiculos en mantenimiento y lavadero.
 */
@@ -98,4 +100,50 @@ public class GestionCola<T> {
     public String getNombreCola() {
         return nombreCola;
     }
+
+    public boolean guardarColaFile(String nombreArchivo) throws IOException {
+        // Implementación para guardar la cola en un archivo
+        FileOutputStream fileOutput = new FileOutputStream(nombreArchivo, false);
+        ObjectOutputStream out = new ObjectOutputStream(fileOutput);
+        try (out) {
+            for (T elemento : this.cola) {
+                out.writeObject(elemento);
+            }
+        } catch (IOException e) {
+            System.out.println("Error de IO al guardar la cola en el archivo: " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error al guardar la cola en el archivo: " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public boolean obtenerColaFile(String nombreArchivo) throws IOException {
+        File archivo = new File(nombreArchivo);
+
+        if (!archivo.exists() || archivo.length() == 0) {
+            return false;
+        }
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
+            while (true) {
+                try {
+                    //Suprime el warnign de tipo de clase al desiarrializar
+                    @SuppressWarnings("unchecked")
+                    T v = (T) in.readObject();
+                    this.cola.add(v);
+                } catch (EOFException eof) {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error de IO al leer la cola desde el archivo: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error al leer la cola desde el archivo: " + e.getMessage());
+        }
+        return true;
+    }
+
 }
