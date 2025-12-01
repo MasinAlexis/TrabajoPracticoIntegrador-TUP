@@ -61,6 +61,7 @@ public class Vehiculo implements Serializable {
     public String getPatente() {
         return patente;
     }
+
     public void setPatente(String patente) {
         this.patente = patente;
     }
@@ -68,6 +69,7 @@ public class Vehiculo implements Serializable {
     public String getTipo() {
         return this.tipo;
     }
+
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
@@ -126,5 +128,15 @@ public class Vehiculo implements Serializable {
 
     public void setFechaBaja(LocalDate fechaBaja) {
         this.fechaBaja = fechaBaja;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if ((obj instanceof Vehiculo) && (((Vehiculo) obj).getPatente() == this.patente)) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }
