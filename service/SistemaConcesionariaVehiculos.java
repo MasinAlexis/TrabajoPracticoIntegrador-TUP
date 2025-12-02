@@ -12,9 +12,7 @@ import java.io.EOFException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-//import java.util.LinkedList;
 import java.util.List;
-//import java.util.Queue;
 import java.util.Scanner;
 
 public class SistemaConcesionariaVehiculos implements GestionVehiculos {
@@ -23,8 +21,6 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
 
     // Listas de Vehiculos
     private List<Vehiculo> vehiculos = new ArrayList<>();
-    // private Queue<Vehiculo> vehiculosEnMantenimiento = new LinkedList<>();
-    // private Queue<Vehiculo> vehiculosEnLavadero = new LinkedList<>();
     private GestionCola<Vehiculo> vehiculosEnMantenimiento = new GestionCola<>("Mantenimiento");
     private GestionCola<Vehiculo> vehiculosEnLavadero = new GestionCola<>("Lavadero");
 
@@ -41,7 +37,6 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         System.out.println("| 3. Motocicleta                                   |");
         System.out.println("----------------------------------------------------");
         // El try captura las excepciones de los metodos de insercion, no es necesario
-        // un try/catch en los mismos
         try {
             System.out.print("Seleccione una opción: ");
             opcion = Integer.parseInt(scanner.nextLine());
@@ -120,17 +115,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         }
     }
 
-    // @Override
-    // public List<Vehiculo> agregarVehiculoAMantenimiento() {
-    // return List.of();
-    // }
-
-    // @Override
-    // public List<Vehiculo> agregarVehiculoALavadero() {
-    // return List.of();
-    // }
-
-    private void guardarVehiculo(Vehiculo vehiculo) throws IOException {
+    private void guardarVehiculo(Vehiculo vehiculo) {
         this.vehiculos.add(vehiculo);
     }
 
@@ -287,45 +272,36 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
 
     @Override
     public void obtenerVehiculosTallerFile() throws IOException {
-        // this.vehiculosEnMantenimiento =
-        // this.obtenerColaFile("vehiculos_en_mantenimiento.dat");
         this.vehiculosEnMantenimiento.obtenerColaFile(nombreArchivoColaMantenimiento);
     }
 
     @Override
     public void obtenerVehiculosLavaderoFile() throws IOException {
-        // this.vehiculosEnLavadero = this.obtenerColaFile("vehiculos_en_lavadero.dat");
         this.vehiculosEnLavadero.obtenerColaFile("vehiculosEnLavadero.dat");
     }
 
     @Override
     public void guardarVehiculosTallerFile() throws IOException {
-        // this.guardarColaFile("vehiculos_en_mantenimiento.dat",
-        // this.vehiculosEnMantenimiento);
         this.vehiculosEnMantenimiento.guardarColaFile(nombreArchivoColaMantenimiento);
     }
 
     @Override
     public void guardarVehiculosLavaderoFile() throws IOException {
-        // this.guardarColaFile("vehiculos_en_lavadero.dat", this.vehiculosEnLavadero);
         this.vehiculosEnLavadero.guardarColaFile("vehiculosEnLavadero.dat");
     }
 
     @Override
     public void listarVehiculosEnMantenimiento() {
-        // this.mostrarVehiculosEnCola(this.vehiculosEnMantenimiento);
         this.vehiculosEnMantenimiento.mostrarCola();
     }
 
     @Override
     public void listarVehiculosEnLavadero() {
-        // this.mostrarVehiculosEnCola(this.vehiculosEnLavadero);
         this.vehiculosEnLavadero.mostrarCola();
     }
 
     // Privado
-    private void menuAdministracionTallerLavadero() throws IOException {
-        // Implementar el menú de administración de taller y lavadero
+    private void menuAdministracionTallerLavadero() {
         try {
             do {
                 System.out.println("----------- Menú de Opciones -----------");
@@ -482,71 +458,4 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         System.out.println("\nPresione Enter para continuar...");
         scanner.nextLine();
     }
-    /* Comentado porque la Cola ya no se administra en esta clase */
-    // private boolean guardarColaFile(String nombreArchivo, Queue<Vehiculo> cola)
-    // throws IOException {
-    // // Implementación para guardar la cola en un archivo
-    // FileOutputStream fileOutput = new FileOutputStream(nombreArchivo, false);
-    // ObjectOutputStream out = new ObjectOutputStream(fileOutput);
-    // try (out) {
-    // for (Vehiculo elemento : cola) {
-    // out.writeObject(elemento);
-    // }
-    // } catch (IOException e) {
-    // System.out.println("Error de IO al guardar la cola en el archivo: " +
-    // e.getMessage());
-    // return false;
-    // } catch (Exception e) {
-    // System.out.println("Error al guardar la cola en el archivo: " +
-    // e.getMessage());
-    // return false;
-    // }
-    // return true;
-    // }
-
-    // private Queue<Vehiculo> obtenerColaFile(String nombreArchivo) throws
-    // IOException {
-    // Queue<Vehiculo> cola = new LinkedList<Vehiculo>();
-    // File archivo = new File(nombreArchivo);
-
-    // if (!archivo.exists() || archivo.length() == 0) {
-    // return cola;
-    // }
-    // try (ObjectInputStream in = new ObjectInputStream(new
-    // FileInputStream(archivo))) {
-    // while (true) {
-    // try {
-    // // //Suprime el warnign de tipo de clase al desiarrializar
-    // // @SuppressWarnings("unchecked")
-    // Vehiculo v = (Vehiculo) in.readObject();
-    // cola.add(v);
-    // } catch (EOFException eof) {
-    // break;
-    // }
-    // }
-    // } catch (IOException e) {
-    // System.out.println("Error de IO al leer la cola desde el archivo: " +
-    // e.getMessage());
-    // } catch (ClassNotFoundException e) {
-    // e.printStackTrace();
-    // } catch (Exception e) {
-    // System.out.println("Error al leer la cola desde el archivo: " +
-    // e.getMessage());
-    // }
-    // return cola;
-    // }
-
-    // private void mostrarVehiculosEnCola(Queue<Vehiculo> cola) {
-    // System.out.println("----- Listado de Vehículos en "
-    // + (cola == vehiculosEnMantenimiento ? "Mantenimiento" : "Lavadero") + "
-    // -----");
-    // if (cola.isEmpty()) {
-    // System.out.println("No hay vehículos para mostrar.");
-    // return;
-    // }
-    // for (Vehiculo vehiculo : cola) {
-    // vehiculo.mostrarInfo();
-    // System.out.println("--------------------");
-    // }
-    // }
 }
