@@ -3,7 +3,7 @@ package domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Vehiculo implements Serializable {
+public abstract class Vehiculo implements Serializable {
 
     //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
     private static final long serialVersionUID = 1L;
