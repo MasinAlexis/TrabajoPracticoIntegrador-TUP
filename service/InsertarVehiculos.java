@@ -33,6 +33,9 @@ public class InsertarVehiculos {
                 throw new ExceptionParametrosEntrada("La patente: " + patente + " para la motocicleta no tiene el formato correcto.\n" +
                         "Formatos aceptados: '123ABC' o 'A123BCD'");
             }
+            if(gestionVehiculos.validarExistenciaVehiculo(patente)) {
+                throw new ExceptionParametrosEntrada("La motocicleta con patente: " + patente + " ya se encuentra guardada.");
+            }
         }
 
         System.out.print("Marca: ");
@@ -93,6 +96,9 @@ public class InsertarVehiculos {
                 throw new ExceptionParametrosEntrada("La patente: " + patente + " para el auto no tiene el formato correcto.\n" +
                         "Formatos aceptados: 'ABC123' o 'AB123CD'");
             }
+            if(gestionVehiculos.validarExistenciaVehiculo(patente)) {
+                throw new ExceptionParametrosEntrada("El auto con patente: " + patente + " ya se encuentra guardado.");
+            }
         }
 
         System.out.print("Marca: ");
@@ -149,6 +155,9 @@ public class InsertarVehiculos {
             if(!patente.matches("^[A-Z]{3}[0-9]{3}$") && !patente.matches("^[A-Z]{2}[0-9]{3}[A-Z]{2}$")) {
                 throw new ExceptionParametrosEntrada("La patente: " + patente + " para el auto no tiene el formato correcto.\n" +
                         "Formatos aceptados: 'ABC123' o 'AB123CD'");
+            }
+            if(gestionVehiculos.validarExistenciaVehiculo(patente)) {
+                throw new ExceptionParametrosEntrada("La camioneta con patente: " + patente + " ya se encuentra guardada.");
             }
         }
 

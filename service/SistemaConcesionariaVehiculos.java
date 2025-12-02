@@ -270,6 +270,17 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         return identificadorTemporal+1;
     }
 
+    public boolean validarExistenciaVehiculo(String patente) throws IOException {
+        List<Vehiculo> listado = obtenerVehiculosFile();
+        boolean existe = false;
+        for (Vehiculo vehiculo : listado) {
+            if(vehiculo.getPatente().equals(patente)) {
+                existe = true;
+            }
+        }
+        return existe;
+    }
+
     @Override
     public void obtenerVehiculosTallerFile() throws IOException {
         this.vehiculosEnMantenimiento.obtenerColaFile(nombreArchivoColaMantenimiento);
