@@ -358,7 +358,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         // Buscar el vehículo en la lista de vehículos
         Vehiculo vehiculoEncontrado = null;
         for (Vehiculo vehiculo : vehiculos) {
-            if (vehiculo.getPatente().equalsIgnoreCase(patente)) {
+            if (vehiculo.getPatente().equalsIgnoreCase(patente) && vehiculo.getFechaBaja() == null) {
                 vehiculoEncontrado = vehiculo;
                 break;
             }
@@ -390,7 +390,7 @@ public class SistemaConcesionariaVehiculos implements GestionVehiculos {
         // Buscar el vehículo en la lista de vehículos
         Vehiculo vehiculoEncontrado = null;
         for (Vehiculo vehiculo : vehiculos) {
-            if (vehiculo.getPatente().equalsIgnoreCase(patente)) {
+            if (vehiculo.getPatente().equalsIgnoreCase(patente) && vehiculo.getFechaBaja() == null) {
                 vehiculoEncontrado = vehiculo;
                 break;
             }
