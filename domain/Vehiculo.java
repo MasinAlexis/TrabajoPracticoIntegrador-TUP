@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Vehiculo implements Serializable {
 
@@ -132,11 +133,14 @@ public abstract class Vehiculo implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if ((obj instanceof Vehiculo) && (((Vehiculo) obj).getPatente() == this.patente)) {
-            return true;
-        } else {
-            return false;
-        }
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
 
+        Vehiculo v = (Vehiculo) obj;
+        return Objects.equals(patente, v.patente);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(patente);
     }
 }

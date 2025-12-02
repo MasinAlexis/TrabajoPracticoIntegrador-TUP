@@ -3,9 +3,10 @@ package domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Motocicleta extends Vehiculo  implements Serializable {
+public class Motocicleta extends Vehiculo implements Serializable {
 
-    //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
+    // Por si en un futuro se modifica la clase, para poder mantener el control de
+    // versiones
     private static final long serialVersionUID = 1L;
 
     private String tipoMoto; // deportiva, naked, scooter, touring, enduro
@@ -16,8 +17,10 @@ public class Motocicleta extends Vehiculo  implements Serializable {
     public Motocicleta() {
     }
 
-    public Motocicleta(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
-                       boolean tuvoMantenimiento, LocalDate fechaBaja, String tipoMoto, Integer cilindrada, String tipoMotor, boolean tieneBaul) {
+    public Motocicleta(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color,
+            boolean esUsado,
+            boolean tuvoMantenimiento, LocalDate fechaBaja, String tipoMoto, Integer cilindrada, String tipoMotor,
+            boolean tieneBaul) {
         super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento, fechaBaja);
         this.tipoMoto = tipoMoto;
         this.cilindrada = cilindrada;
@@ -28,11 +31,12 @@ public class Motocicleta extends Vehiculo  implements Serializable {
     @Override
     public String toString() {
         return super.toString() + "\n" +
-                "tipoMoto=" + this.tipoMoto+ "\n" +
-                "cilindrada=" + this.cilindrada+ "\n" +
-                "tipoMotor=" + this.tipoMotor+ "\n" +
+                "tipoMoto=" + this.tipoMoto + "\n" +
+                "cilindrada=" + this.cilindrada + "\n" +
+                "tipoMotor=" + this.tipoMotor + "\n" +
                 "tieneBaul=" + this.tieneBaul;
     }
+
     @Override
     public void mostrarInfo() {
         super.mostrarInfo();
