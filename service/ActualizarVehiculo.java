@@ -1,5 +1,8 @@
 package service;
 
+import domain.Auto;
+import domain.Camioneta;
+import domain.Motocicleta;
 import domain.Vehiculo;
 import excepciones.ExceptionTipoDeVehiculoNoValido;
 import excepciones.ExceptionVechiculoNoEncontrado;
@@ -28,23 +31,28 @@ public class ActualizarVehiculo {
                                                       "' no coincide con el tipo de vehículo para la patente " + patente);
         }
 
-        Vehiculo vehiculoActualizado = new Vehiculo();
         if (vehiculo.getFechaBaja() != null) {
             System.out.print("El vehiculo se encuentra dado de baja, desea darlo de alta para actualizarlo? ");
             String entrada = scanner.nextLine().toUpperCase();
             if (entrada.equals("SI")) {
                 switch (tipoVehiculo) {
                     case 1:
-                        vehiculoActualizado = InsertarVehiculos.insertarAutomovil();
+                        Auto autoActualizado = InsertarVehiculos.insertarAutomovil();
+                        int indiceAuto = listadoVehiculos.indexOf(vehiculo);
+                        listadoVehiculos.set(indiceAuto, autoActualizado);
                         break;
                     case 2:
-                        vehiculoActualizado = InsertarVehiculos.insertarCamioneta();
+                        Camioneta camionetaActualizado = InsertarVehiculos.insertarCamioneta();
+                        int indiceCamioneta = listadoVehiculos.indexOf(vehiculo);
+                        listadoVehiculos.set(indiceCamioneta, camionetaActualizado);
                         break;
                     case 3:
-                        vehiculoActualizado = InsertarVehiculos.insertarMotocicleta();
+                        Motocicleta motoActualizado = InsertarVehiculos.insertarMotocicleta();
+                        int indiceMotocicleta = listadoVehiculos.indexOf(vehiculo);
+                        listadoVehiculos.set(indiceMotocicleta, motoActualizado);
                         break;
                     default:
-                        break;
+                        throw new ExceptionTipoDeVehiculoNoValido("El tipo de vehiculo elegido no es válido'" + tipoVehiculo);
                 }
             } else {
                 throw new ExceptionVechiculoNoEncontrado("El vehículo con patente: " + patente + " se encuentra dado de baja.");
@@ -52,22 +60,24 @@ public class ActualizarVehiculo {
         } else {
             switch (tipoVehiculo) {
                 case 1:
-                    vehiculoActualizado = InsertarVehiculos.insertarAutomovil();
+                    Auto autoActualizado = InsertarVehiculos.insertarAutomovil();
+                    int indiceAuto = listadoVehiculos.indexOf(vehiculo);
+                    listadoVehiculos.set(indiceAuto, autoActualizado);
                     break;
                 case 2:
-                    vehiculoActualizado = InsertarVehiculos.insertarCamioneta();
+                    Camioneta camionetaActualizado = InsertarVehiculos.insertarCamioneta();
+                    int indiceCamioneta = listadoVehiculos.indexOf(vehiculo);
+                    listadoVehiculos.set(indiceCamioneta, camionetaActualizado);
                     break;
                 case 3:
-                    vehiculoActualizado = InsertarVehiculos.insertarMotocicleta();
+                    Motocicleta motoActualizado = InsertarVehiculos.insertarMotocicleta();
+                    int indiceMotocicleta = listadoVehiculos.indexOf(vehiculo);
+                    listadoVehiculos.set(indiceMotocicleta, motoActualizado);
                     break;
                 default:
-                    break;
+                    throw new ExceptionTipoDeVehiculoNoValido("El tipo de vehiculo elegido no es válido'" + tipoVehiculo);
             }
         }
-        // Actualizamos nuestro vehiculo
-        int indice = listadoVehiculos.indexOf(vehiculo);
-        listadoVehiculos.set(indice, vehiculoActualizado);
-
         return listadoVehiculos;
     }
 
