@@ -1,17 +1,24 @@
-import java.math.BigInteger;
+package domain;
 
-public class Motocicleta extends Vehiculo {
+import java.io.Serializable;
+import java.time.LocalDate;
 
-    private String tipoMoto;   // deportiva, naked, scooter, touring, enduro
-    private Integer cilindrada;    // en cc
-    private String tipoMotor;  // 2 tiempos, 4 tiempos
+public class Motocicleta extends Vehiculo  implements Serializable {
+
+    //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
+    private static final long serialVersionUID = 1L;
+
+    private String tipoMoto; // deportiva, naked, scooter, touring, enduro
+    private Integer cilindrada; // en cc
+    private String tipoMotor; // 2 tiempos, 4 tiempos
     private boolean tieneBaul;
 
-    public Motocicleta() {}
+    public Motocicleta() {
+    }
 
-    public Motocicleta(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
-                       boolean tuvoMantenimiento, String tipoMoto, Integer cilindrada, String tipoMotor, boolean tieneBaul) {
-        super(dniTitular, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+    public Motocicleta(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+                       boolean tuvoMantenimiento, LocalDate fechaBaja, String tipoMoto, Integer cilindrada, String tipoMotor, boolean tieneBaul) {
+        super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento, fechaBaja);
         this.tipoMoto = tipoMoto;
         this.cilindrada = cilindrada;
         this.tipoMotor = tipoMotor;
@@ -38,6 +45,7 @@ public class Motocicleta extends Vehiculo {
     public String getTipoMoto() {
         return this.tipoMoto;
     }
+
     public void setTipoMoto(String tipoMoto) {
         this.tipoMoto = tipoMoto;
     }
@@ -45,6 +53,7 @@ public class Motocicleta extends Vehiculo {
     public Integer getCilindrada() {
         return this.cilindrada;
     }
+
     public void setCilindrada(Integer cilindrada) {
         this.cilindrada = cilindrada;
     }
@@ -52,6 +61,7 @@ public class Motocicleta extends Vehiculo {
     public String getTipoMotor() {
         return this.tipoMotor;
     }
+
     public void setTipoMotor(String tipoMotor) {
         this.tipoMotor = tipoMotor;
     }
@@ -59,6 +69,7 @@ public class Motocicleta extends Vehiculo {
     public boolean isTieneBaul() {
         return this.tieneBaul;
     }
+
     public void setTieneBaul(boolean tieneBaul) {
         this.tieneBaul = tieneBaul;
     }

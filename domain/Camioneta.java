@@ -1,23 +1,33 @@
-import java.math.BigInteger;
+package domain;
 
-public class Camioneta extends Vehiculo {
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class Camioneta extends Vehiculo implements Serializable {
+
+    // Por si en un futuro se modifica la clase, para poder mantener el control de
+    // versiones
+    private static final long serialVersionUID = 1L;
 
     private String tipoCabina;
     private double capacidadCarga; // en kilogramos
-    private String tipoTraccion;   // 4x2, 4x4
+    private String tipoTraccion; // 4x2, 4x4
     private boolean tieneCajaCubierta;
 
-    public Camioneta() {}
+    public Camioneta() {
+    }
 
-    public Camioneta(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
-                     boolean tuvoMantenimiento, String tipoCabina, double capacidadCarga, String tipoTraccion,
-                     boolean tieneCajaCubierta) {
-        super(dniTitular, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+    public Camioneta(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color,
+            boolean esUsado,
+            boolean tuvoMantenimiento, LocalDate fechaBaja, String tipoCabina, double capacidadCarga, String tipoTraccion,
+            boolean tieneCajaCubierta) {
+        super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento, fechaBaja);
         this.tipoCabina = tipoCabina;
         this.capacidadCarga = capacidadCarga;
         this.tipoTraccion = tipoTraccion;
-        this. tieneCajaCubierta = tieneCajaCubierta;
+        this.tieneCajaCubierta = tieneCajaCubierta;
     }
+
     @Override
     public String toString() {
         return super.toString() + "\n" +
@@ -39,6 +49,7 @@ public class Camioneta extends Vehiculo {
     public String getTipoCabina() {
         return this.tipoCabina;
     }
+
     public void setTipoCabina(String tipoCabina) {
         this.tipoCabina = tipoCabina;
     }
@@ -46,6 +57,7 @@ public class Camioneta extends Vehiculo {
     public double getCapacidadCarga() {
         return this.capacidadCarga;
     }
+
     public void setCapacidadCarga(double capacidadCarga) {
         this.capacidadCarga = capacidadCarga;
     }
@@ -53,6 +65,7 @@ public class Camioneta extends Vehiculo {
     public String getTipoTraccion() {
         return this.tipoTraccion;
     }
+
     public void setTipoTraccion(String tipoTraccion) {
         this.tipoTraccion = tipoTraccion;
     }
@@ -60,6 +73,7 @@ public class Camioneta extends Vehiculo {
     public boolean isTieneCajaCubierta() {
         return this.tieneCajaCubierta;
     }
+
     public void setTieneCajaCubierta(boolean tieneCajaCubierta) {
         this.tieneCajaCubierta = tieneCajaCubierta;
     }

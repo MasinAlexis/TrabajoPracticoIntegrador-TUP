@@ -1,18 +1,25 @@
-import java.math.BigInteger;
+package domain;
 
-public class Auto extends Vehiculo {
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class Auto extends Vehiculo  implements Serializable {
+
+    //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
+    private static final long serialVersionUID = 1L;
 
     private String carroceria;
     private int cantidadPuertas;
     private String tipoCombustible;
     private String transmision;
 
-    public Auto() {}
+    public Auto() {
+    }
 
-    public Auto(Long dniTitular, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
-                boolean tuvoMantenimiento, String carroceria, int cantidadPuertas, String tipoCombustible,
+    public Auto(String patente, String tipo, String marca, String modelo, int anioFabricacion, String color, boolean esUsado,
+                boolean tuvoMantenimiento, LocalDate fechaBaja, String carroceria, int cantidadPuertas, String tipoCombustible,
                 String transmision) {
-        super(dniTitular, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento);
+        super(patente, tipo, marca, modelo, anioFabricacion, color, esUsado, tuvoMantenimiento, fechaBaja);
         this.carroceria = carroceria;
         this.cantidadPuertas = cantidadPuertas;
         this.tipoCombustible = tipoCombustible;
@@ -40,6 +47,7 @@ public class Auto extends Vehiculo {
     public String getCarroceria() {
         return this.carroceria;
     }
+
     public void setCarroceria(String carroceria) {
         this.carroceria = carroceria;
     }
@@ -47,6 +55,7 @@ public class Auto extends Vehiculo {
     public int getCantidadPuertas() {
         return this.cantidadPuertas;
     }
+
     public void setCantidadPuertas(int cantidadPuertas) {
         this.cantidadPuertas = cantidadPuertas;
     }
@@ -54,6 +63,7 @@ public class Auto extends Vehiculo {
     public String getTipoCombustible() {
         return this.tipoCombustible;
     }
+
     public void setTipoCombustible(String tipoCombustible) {
         this.tipoCombustible = tipoCombustible;
     }
@@ -61,6 +71,7 @@ public class Auto extends Vehiculo {
     public String getTransmision() {
         return this.transmision;
     }
+
     public void setTransmision(String transmision) {
         this.transmision = transmision;
     }
