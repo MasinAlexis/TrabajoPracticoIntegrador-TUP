@@ -183,7 +183,7 @@ public class InsertarVehiculos {
         Boolean tieneCajaCubierta = OpcionSiNo.valueOf(entrada.nextLine().toUpperCase()).equals(OpcionSiNo.SI);
 
         // Crear la instancia
-        Camioneta nuevaCamioneta = new Camioneta (patente, "Auto", marca, modelo, anioFabricacion, color,
+        Camioneta nuevaCamioneta = new Camioneta (patente, "Camioneta", marca, modelo, anioFabricacion, color,
                 esUsado, tuvoMantenimiento, null, tipoCabina, capacidadDeCarga, tipoTraccion, tieneCajaCubierta);
 
         System.out.println(">>> Camioneta cargado correctamente <<<");

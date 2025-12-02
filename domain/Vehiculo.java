@@ -1,13 +1,13 @@
 package domain;
 
-//import java.io.Serializable;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class Vehiculo {
+public abstract class Vehiculo extends Serializable{
 
     //Por si en un futuro se modifica la clase, para poder mantener el control de versiones
-    //private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private String patente;
     private String tipo; //Auto - Motocicleta - Camioneta
