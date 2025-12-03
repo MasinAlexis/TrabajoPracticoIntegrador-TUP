@@ -9,9 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
-
-import domain.Vehiculo;
 
 /*
 Clase generica para gestionar las colas de vehiculos en mantenimiento y lavadero.
